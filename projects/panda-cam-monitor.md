@@ -1,9 +1,9 @@
-Panda Cam Monitor
+Boot to YouTube Live Cam
 =================
 
 Description
 -------------------
-Using [Raspbian's][raspbian-site] startup settings, you can configure your Raspberry Pi Zero to start up and launch the web browser in fullscreen for a webpage of your choice. At Zipcar, we're fans of the San Diego Zoo's Giant Panda Cam (but you can use this tutorial to set up a monitor for any site you wish).
+Using [Raspbian's][raspbian-site] startup settings, you can configure your Raspberry Pi Zero to start up and launch the web browser in fullscreen for a webpage of your choice. In this forked version I'll use a URL that (at the moment) is streaming from downtown Tokyo. Using the same URL format, you can substitute in any YouTube video ID and get full screen playback in Chrome.
 
 Time estimate
 -------------
@@ -25,7 +25,7 @@ Ingredients
 - 1x USB AC power plug (or other USB power source)
 - 1x micro USB to USB adapter (needed for setup)
 - 1x mini HDMI to HDMI adapter
-- 1x Raspberry Pi Zero W
+- 1x Raspberry Pi (Zero's stuttered for me, recommend full size RPI 2 or later)
 
 
 #### Virtual things
@@ -95,13 +95,15 @@ Ingredients
 ![Raspbian toolbar Terminal icon](../graphics/raspbian-toolbar-terminal-icon.png "Raspbian toolbar Terminal icon")
 
 - Type the following into the terminal:
-`sudo nano .config/lxsession/LXDE-pi/autostart`
+`sudo nano /etc/xdg/lxsession/LXDE-pi/autostart`
 > PROTIP: you can use `vi` instead of `nano`, which is just another way to edit the file
 
 - Look for a line in the file that says `@xscreensaver -no-splash` and put a `#` in front of it, so the line reads `#@xscreensaver -no-splash`
+
+- Then, look for a line in the file that says `point-rpi` and put a `#` in front of it, so the line reads `#point-rpi`. We do this so that the pointer doesn't trigger the YouTube player's "subscribe" overlay.
 - Next, you want to use the text editor in Terminal to add the following lines to the end of the file:
 ```
-@/usr/bin/chromium-browser --allow-running-insecure-content --disable --disable-infobars --disable-save-password-bubble --disable-session-crashed-bubble --disable-suggestions-service --disable-translate --incognito --no-first-run --noerrdialogs --remember-cert-error-decisions --start-maximized --kiosk http://zssd-panda.player.camzonecdn.com/v1.0/CamzoneStreamPlayer?iframe=yes&channel=zssd-panda&muted=yes
+@/usr/bin/chromium-browser --allow-running-insecure-content --disable --disable-infobars --disable-save-password-bubble --disable-session-crashed-bubble --disable-suggestions-service --disable-translate --incognito --no-first-run --noerrdialogs --remember-cert-error-decisions --start-maximized --kiosk https://www.youtube.com/embed/FAAr6J6sYKk?autoplay=1&controls=0&iv_load_policy=3
 @xset s off
 @xset s noblank
 @xset -dpms
