@@ -103,11 +103,13 @@ Ingredients
 - Then, look for a line in the file that says `point-rpi` and put a `#` in front of it, so the line reads `#point-rpi`. We do this so that the pointer doesn't trigger the YouTube player's "subscribe" overlay.
 - Next, you want to use the text editor in Terminal to add the following lines to the end of the file:
 ```
-@/usr/bin/chromium-browser --allow-running-insecure-content --disable --disable-infobars --disable-save-password-bubble --disable-session-crashed-bubble --disable-suggestions-service --disable-translate --incognito --no-first-run --noerrdialogs --remember-cert-error-decisions --start-maximized --kiosk https://www.youtube.com/embed/FAAr6J6sYKk?autoplay=1&controls=0&iv_load_policy=3
+@/usr/bin/chromium-browser --allow-running-insecure-content --disable --disable-infobars --disable-save-password-bubble --disable-session-crashed-bubble --disable-suggestions-service --disable-translate --incognito --no-first-run --noerrdialogs --remember-cert-error-decisions --start-maximized --kiosk https://www.youtube.com/embed/live_stream?autoplay=1&controls=0&iv_load_policy=3&channel=UCbTLJi8lXWIt_d1AtRv4Nmw
 @xset s off
 @xset s noblank
 @xset -dpms
 ```
+-Note that the string of numbers at the end of the above YouTube URL represent the channel ID of the YouTube channel you're pulling the stream from. In this case, it's the feed from the channel Tokyo Live camera. To change it, simply replace the ID number after "channel=" with the YouTube channel of your choice. The advantage of doing it this way instead of linking to a specific video URL is that your Pi won't follow a dead link to a stream that has ended. It will always pull the current live video feed. 
+
 - Save your changes by pressing the `Control` and `x` on your keyboard, then `y`, followed by `enter` to accept the changes and close the file.
 
 > PROTIP: if you want to hide the mouse cursor, you can install unclutter with `sudo apt-get install -y unclutter` and add the following line to the autostart file: `@unclutter`
