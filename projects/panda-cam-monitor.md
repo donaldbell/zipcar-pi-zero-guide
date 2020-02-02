@@ -127,6 +127,7 @@ Ingredients
 
 
 #### Super Secret Tips for Experts
+-If your browser or system tends to freeze after awile (common on older pi models) you can configure the system to automatically restart at a given time interval by editing/creating your root user 'crontab'. Type `sudo crontab -e`. When presented with editor options, just type 1 to pick the first option. At the end of the crontab script paste `*/30 * * * * sudo /sbin/shutdown -r now`. The "30" in this example specifies the duration of time between reboots and can be changed to whatever you like.
 - You can access your Raspbian installation over SSH from another computer on the same network. First, you need to turn on ssh access by adding a file named `ssh` to the root directory of your microSD card. Just `ssh pi@raspberrypi.local`. When you're prompted for a password, use `raspberry`, which is the default (you should change this password if you don't want just anyone to be able to login and mess with things)
 - You can also squeeze a little more performance out of the Pi Zero by modifying the values in the config.txt file in the boot directory of your micro SD card. For example:
 ```
